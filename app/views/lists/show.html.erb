@@ -1,2 +1,24 @@
-<h1><%= @list.name %></h1>
-<%= link_to "New bookmark", new_list_bookmark_path(@list) %>
+<%= render 'navbar' %>
+<div class="title d-flex justify-content-start align-items-center">
+  <h1><%= @list.name %></h1>
+  <%= link_to edit_list_path do %>
+    <i class="fa-regular fa-pen-to-square"></i>
+  <% end %>
+</div>
+<%= link_to "New bookmark", new_list_bookmark_path(@list), class: "btn btn-primary" %>
+<%= link_to "Back to all lists", lists_path, class: "btn btn-primary" %>
+
+<% @list.bookmarks.each do |bookmark| %>
+  <li class="list-group-item">
+  <h2><%= bookmark.movie.title %></h2>
+  <p><%= bookmark.movie.overview %></p>
+    <%= bookmark.comment %>
+    <%= link_to edit_list_bookmark_path(@list, bookmark) do %>
+      <i class="fa-regular fa-pen-to-square"></i>
+    <% end %>
+    <%= link_to "X",
+      bookmark_path(bookmark),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+    %>
+  </li>
+<% end %>

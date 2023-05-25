@@ -1,0 +1,11 @@
+<%= render 'navbar' %>
+<h1>Edit <%= @list.name %></h1>
+<div class="container d-flex">
+  <div class="form">
+    <%= simple_form_for(@list) do |f| %>
+      <%= f.input :name %>
+      <%= f.submit class: "btn btn-primary" %>
+      <%= link_to "Cancel", list_path, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
