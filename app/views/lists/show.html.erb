@@ -21,3 +21,28 @@
     <% end %>
   </li>
 <% end %>
+
+<hr>
+<div class="reviews-container">
+  <h2>Reviews for this list</h2>
+  <div class="review-section d-flex justify-content-around">
+    <div class="reviews">
+      <% @list.reviews.each do |review| %>
+        <div class="star d-flex">
+          <% review.rating.times do %>
+            <p>⭐️</p>
+          <% end %>
+        </div>
+        <p><%= review.content %></p>
+      <% end %>
+    </div>
+    <div class="add-review">
+      <h2>Create new review</h2>
+      <%= simple_form_for [@list, @review] do |f| %>
+        <%= f.input :content %>
+        <%= f.input :rating %>
+        <%= f.submit "Submit review", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
