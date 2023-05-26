@@ -17,8 +17,8 @@ Movie.destroy_all
 end
 puts '...Movies created!'
 
-file = URI.open("")
-movie = Movie.new(title: "NES", body: "A great console")
-movie.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
-movie.save
-puts '...Movie posters attached!'
+# file = URI.open("")
+# movie = Movie.new(title: "NES", body: "A great console")
+# movie.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
+# movie.save
+# puts '...Movie posters attached!'

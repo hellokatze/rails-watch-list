@@ -8,20 +8,23 @@
 <%= link_to "New bookmark", new_list_bookmark_path(@list), class: "btn btn-primary" %>
 <%= link_to "Back to all lists", lists_path, class: "btn btn-primary" %>
 
-<% @list.bookmarks.each do |bookmark| %>
-  <li class="list-group-item">
-  <h2><%= bookmark.movie.title %></h2>
-  <p><%= bookmark.movie.overview %></p>
-    <%= bookmark.comment %>
-    <%= link_to edit_list_bookmark_path(@list, bookmark) do %>
-      <i class="fa-regular fa-pen-to-square"></i>
-    <% end %>
-    <%= link_to bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-      <i class="fa-regular fa-trash-can"></i>
-    <% end %>
-  </li>
-<% end %>
-
+<div class="card-movie">
+  <% @list.bookmarks.each do |bookmark| %>
+    <li class="list-group-item">
+    <img src=<%= bookmark.movie.poster_url %> alt="">
+    <h2><%= bookmark.movie.title %></h2>
+    <p><%= bookmark.movie.overview %></p>
+      <%= bookmark.comment %>
+      <%= link_to edit_list_bookmark_path(@list, bookmark) do %>
+        <i class="fa-regular fa-pen-to-square"></i>
+      <% end %>
+      <%= link_to bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+        <i class="fa-regular fa-trash-can"></i>
+      <% end %>
+    </li>
+  <% end %>
+</div>
+<br>
 <hr>
 <div class="reviews-container">
   <h2>Reviews for this list</h2>
@@ -37,7 +40,7 @@
       <% end %>
     </div>
     <div class="add-review">
-      <h2>Create new review</h2>
+      <h2>Write a review</h2>
       <%= simple_form_for [@list, @review] do |f| %>
         <%= f.input :content %>
         <%= f.input :rating %>

@@ -34,6 +34,7 @@ gem "simple_form"
 gem "faker"
 gem "dotenv-rails"
 gem "open-uri"
+gem "cloudinary"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
