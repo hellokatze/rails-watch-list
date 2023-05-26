@@ -1,33 +1,39 @@
 <%= render 'navbar' %>
-<%= render 'banner-list' %>
 
-<div class="title d-flex justify-content-start align-items-center">
-  <h1><%= @list.name %></h1>
-  <%= link_to edit_list_path do %>
+<div class="title d-flex">
+  <%= render 'banner-list', class: "banner-show" %>
+  <%= link_to edit_list_path, class: "edit-pencil " do %>
     <i class="fa-regular fa-pen-to-square"></i>
   <% end %>
 </div>
 <%= link_to "New bookmark", new_list_bookmark_path(@list), class: "btn btn-primary" %>
 <%= link_to "Back to all lists", lists_path, class: "btn btn-primary" %>
 
-<div class="card-movie">
+<h2>Bookmarked movies</h2>
+<div class="card-movie d-flex">
   <% @list.bookmarks.each do |bookmark| %>
     <li class="list-group-item">
-    <img src=<%= bookmark.movie.poster_url %> alt="">
-    <h2><%= bookmark.movie.title %></h2>
-    <p><%= bookmark.movie.overview %></p>
-      <%= bookmark.comment %>
-      <%= link_to edit_list_bookmark_path(@list, bookmark) do %>
-        <i class="fa-regular fa-pen-to-square"></i>
-      <% end %>
-      <%= link_to bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-        <i class="fa-regular fa-trash-can"></i>
-      <% end %>
-    </li>
+    <div class="bookmark-movie-img">
+      <img src=<%= "https://image.tmdb.org/t/p/original#{bookmark.movie.poster_url}" %> alt=<% "#{bookmark.movie.title} movie poster" %>>
+    </div>
+    <div class="bookmark-movie-details">
+      <h2><%= bookmark.movie.title %></h2>
+      <p><%= bookmark.movie.overview %></p>
+        <%= bookmark.comment %>
+        <%= link_to edit_list_bookmark_path(@list, bookmark) do %>
+          <i class="fa-regular fa-pen-to-square"></i>
+        <% end %>
+        <%= link_to bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+          <i class="fa-regular fa-trash-can"></i>
+        <% end %>
+      </li>
+    </div>
   <% end %>
 </div>
+
 <br>
 <hr>
+
 <div class="reviews-container">
   <h2>Reviews for this list</h2>
   <div class="review-section d-flex justify-content-around">
