@@ -1,0 +1,17 @@
+  <div class="container d-flex justify-content-center flex-column mt-2">
+    <div class="cards">
+      <div class="row justify-content-center">
+        <% @lists.each do |list| %>
+          <% if list.photo.attached? %>
+            <div class="col-3 card-category m-2" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path list.photo.key%>');">
+              <%= link_to list.name, list %>
+            </div>
+          <% else %>
+            <div class="col-3 card-category m-2" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+              <%= link_to list.name, list %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>

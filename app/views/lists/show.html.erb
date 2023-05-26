@@ -1,4 +1,6 @@
 <%= render 'navbar' %>
+<%= render 'banner-list' %>
+
 <div class="title d-flex justify-content-start align-items-center">
   <h1><%= @list.name %></h1>
   <%= link_to edit_list_path do %>
@@ -49,6 +51,3 @@
     </div>
   </div>
 </div>
-
-
-<%= cl_image_tag("bg3ucckifjippcmpn92g", width: 400, height: 300, crop: :fill) %>
