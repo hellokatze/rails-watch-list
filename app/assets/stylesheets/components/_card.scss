@@ -1,3 +1,5 @@
+// index: list cards
+
 .card-category {
   background-size: cover;
   background-position: center;
@@ -19,6 +21,12 @@
     color: white;
     font-family: 'Inter', sans-serif;
   }
+}
+
+// show: movie cards
+
+.card-movie {
+  width: 400 px;
 }
 
 // .card-remove-link {

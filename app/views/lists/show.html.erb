@@ -10,26 +10,26 @@
 <%= link_to "Back to all lists", lists_path, class: "btn btn-primary" %>
 
 <h2>Bookmarked movies</h2>
-<div class="card-movie d-flex">
   <% @list.bookmarks.each do |bookmark| %>
-    <li class="list-group-item">
-    <div class="bookmark-movie-img">
-      <img src=<%= "https://image.tmdb.org/t/p/original#{bookmark.movie.poster_url}" %> alt=<% "#{bookmark.movie.title} movie poster" %>>
-    </div>
-    <div class="bookmark-movie-details">
-      <h2><%= bookmark.movie.title %></h2>
-      <p><%= bookmark.movie.overview %></p>
-        <%= bookmark.comment %>
-        <%= link_to edit_list_bookmark_path(@list, bookmark) do %>
-          <i class="fa-regular fa-pen-to-square"></i>
-        <% end %>
-        <%= link_to bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-          <i class="fa-regular fa-trash-can"></i>
-        <% end %>
-      </li>
-    </div>
+    <div class="card-movie d-flex">
+      <li class="list-group-item">
+      <div class="bookmark-movie-img">
+        <img src=<%= "https://image.tmdb.org/t/p/original#{bookmark.movie.poster_url}" %> alt=<% "#{bookmark.movie.title} movie poster" %>>
+      </div>
+      <div class="bookmark-movie-details">
+        <h2><%= bookmark.movie.title %></h2>
+        <p><%= bookmark.movie.overview %></p>
+          <%= bookmark.comment %>
+          <%= link_to edit_list_bookmark_path(@list, bookmark) do %>
+            <i class="fa-regular fa-pen-to-square"></i>
+          <% end %>
+          <%= link_to bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+            <i class="fa-regular fa-trash-can"></i>
+          <% end %>
+        </li>
+      </div>
+  </div>
   <% end %>
-</div>
 
 <br>
 <hr>
