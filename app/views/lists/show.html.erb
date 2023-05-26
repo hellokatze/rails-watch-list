@@ -6,54 +6,63 @@
     <i class="fa-regular fa-pen-to-square"></i>
   <% end %>
 </div>
-<%= link_to "New bookmark", new_list_bookmark_path(@list), class: "btn btn-primary" %>
-<%= link_to "Back to all lists", lists_path, class: "btn btn-primary" %>
 
-<h2>Bookmarked movies</h2>
+<div class="show-container m-3">
+  <%= link_to "New bookmark", new_list_bookmark_path(@list), class: "btn btn-primary" %>
+  <%= link_to "Back to all lists", lists_path, class: "btn btn-primary" %>
+
+  <h2>Bookmarked movies</h2>
   <% @list.bookmarks.each do |bookmark| %>
-    <div class="card-movie d-flex">
-      <li class="list-group-item">
-      <div class="bookmark-movie-img">
-        <img src=<%= "https://image.tmdb.org/t/p/original#{bookmark.movie.poster_url}" %> alt=<% "#{bookmark.movie.title} movie poster" %>>
-      </div>
-      <div class="bookmark-movie-details">
-        <h2><%= bookmark.movie.title %></h2>
-        <p><%= bookmark.movie.overview %></p>
-          <%= bookmark.comment %>
-          <%= link_to edit_list_bookmark_path(@list, bookmark) do %>
-            <i class="fa-regular fa-pen-to-square"></i>
-          <% end %>
-          <%= link_to bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-            <i class="fa-regular fa-trash-can"></i>
-          <% end %>
-        </li>
-      </div>
-  </div>
-  <% end %>
-
-<br>
-<hr>
-
-<div class="reviews-container">
-  <h2>Reviews for this list</h2>
-  <div class="review-section d-flex justify-content-around">
-    <div class="reviews">
-      <% @list.reviews.each do |review| %>
-        <div class="star d-flex">
-          <% review.rating.times do %>
-            <p>⭐️</p>
-          <% end %>
+    <div class="card-bkmrk-movie mt-3">
+      <div class="row">
+        <div class="col-5">
+          <img class="card-img" src=<%= "https://image.tmdb.org/t/p/original#{bookmark.movie.poster_url}" %> alt=<% "#{bookmark.movie.title} movie poster" %>>
         </div>
-        <p><%= review.content %></p>
-      <% end %>
+        <div class="col-7">
+          <div class="movie-and-bkmrk-box d-flex flex-column justify-content-around">
+            <div class="movie-title-overview mb-auto">
+              <h5><%= bookmark.movie.title %></h5>
+              <p><%= bookmark.movie.overview %></p>
+            </div>
+            <div class="bkmrk d-flex justify-content-start">
+              <i class="fa-solid fa-bookmark mt-1" style="font-size: 15px"></i>
+              <div class="bkmrk-comment mx-2"><%= bookmark.comment %></div>
+              <%= link_to edit_list_bookmark_path(@list, bookmark), class: "mx-2" do %>
+                <i class="fa-regular fa-pen-to-square"></i>
+              <% end %>
+              <%= link_to bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+                <i class="fa-regular fa-trash-can"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="add-review">
-      <h2>Write a review</h2>
-      <%= simple_form_for [@list, @review] do |f| %>
-        <%= f.input :content %>
-        <%= f.input :rating %>
-        <%= f.submit "Submit review", class: "btn btn-primary" %>
-      <% end %>
+  <% end %>
+  <br>
+  <hr>
+
+  <div class="reviews-container">
+    <h2>Reviews for this list</h2>
+    <div class="review-section d-flex justify-content-around">
+      <div class="reviews">
+        <% @list.reviews.each do |review| %>
+          <div class="star d-flex">
+            <% review.rating.times do %>
+              <p>⭐️</p>
+            <% end %>
+          </div>
+          <p><%= review.content %></p>
+        <% end %>
+      </div>
+      <div class="add-review">
+        <h2>Write a review</h2>
+        <%= simple_form_for [@list, @review] do |f| %>
+          <%= f.input :content %>
+          <%= f.input :rating %>
+          <%= f.submit "Submit review", class: "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
