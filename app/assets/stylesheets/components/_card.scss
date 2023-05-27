@@ -45,6 +45,22 @@
   }
 }
 
+// show: review section card
+
+.review-section {
+  height: auto;
+  width: 1000px;
+  padding: 50px;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 3px;
+  h5 {
+    font-weight: bold;
+  }
+  .reviews {
+    padding-right: 30px;
+  }
+}
+
 // .movie-and-bkmrk-box {
 //   display: flex;
 //   flex-direction: column;
