@@ -2,9 +2,27 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
 
 // Define fonts for body and headers
-$body-font: "Work Sans", "Helvetica", "sans-serif";
-$headers-font: "Nunito", "Helvetica", "sans-serif";
+$body-font: "Inter", "Helvetica", "sans-serif";
+$headers-font: "Fugaz One", "Helvetica", "sans-serif";
 
+// font families
+// font-family: 'Bangers', cursive;
+// font-family: 'Fugaz One', cursive;
+// font-family: 'Inter', sans-serif;
+// font-family: 'Nabla', cursive;
+
+// font-awesome icons
+.fa-bookmark {
+  color: rgb(75, 0, 0);
+}
+
+.fa-pen-to-square, .fa-trash-can {
+  color: rgb(190, 190, 190);
+  transition: 0.25s;
+  &:hover {
+    color: gray;
+  }
+}
 // To use a font file (.woff) uncomment following lines
 // @font-face {
 //   font-family: "Font Name";

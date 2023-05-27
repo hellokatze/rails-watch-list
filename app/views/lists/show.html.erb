@@ -5,47 +5,51 @@
   <%= link_to edit_list_path, class: "edit-pencil " do %>
     <i class="fa-regular fa-pen-to-square"></i>
   <% end %>
-</div>
+</div>  
 
 <div class="show-container m-3">
   <div class="header text-center">
     <h2>Bookmarked movies</h2>
     <%= link_to "Add a movie", new_list_bookmark_path(@list), class: "btn btn-primary" %>
-    <%= link_to "Back to all lists", lists_path, class: "btn btn-primary" %>
+    <%= link_to "Back to all lists", root_path, class: "btn btn-secondary" %>
   </div>
-  <div class="container d-flex justify-content-center flex-column mt-2">
-    <div class="cards">
-      <div class="row justify-content-center">
-        <% @list.bookmarks.each do |bookmark| %>
-          <div class="card-bkmrk-movie mt-3 mx-2">
-            <div class="row">
-              <div class="col-5">
-                <img class="card-img" src=<%= "https://image.tmdb.org/t/p/original#{bookmark.movie.poster_url}" %> alt=<% "#{bookmark.movie.title} movie poster" %>>
-              </div>
-              <div class="col-7">
-                <div class="movie-and-bkmrk-box d-flex flex-column justify-content-around">
-                  <div class="movie-title-overview mb-auto">
-                    <h5><%= bookmark.movie.title %></h5>
-                    <p><%= bookmark.movie.overview %></p>
-                  </div>
-                  <div class="bkmrk d-flex justify-content-start">
-                    <i class="fa-solid fa-bookmark mt-1" style="font-size: 15px"></i>
-                    <div class="bkmrk-comment mx-2"><%= bookmark.comment %></div>
-                    <%= link_to edit_list_bookmark_path(@list, bookmark), class: "mx-2" do %>
-                      <i class="fa-regular fa-pen-to-square"></i>
-                    <% end %>
-                    <%= link_to bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-                      <i class="fa-regular fa-trash-can"></i>
-                    <% end %>
+  <% if @list.bookmarks.length == 0 %>
+    <p class="text-center" style="color: gray"><em>No movies on this list yet. Bookmark your first movie!</em></p>
+  <% else %>
+    <div class="container d-flex justify-content-center flex-column mt-2">
+      <div class="cards">
+        <div class="row justify-content-center">
+          <% @list.bookmarks.each do |bookmark| %>
+            <div class="card-bkmrk-movie mt-3 mx-2">
+              <div class="row">
+                <div class="col-5">
+                  <img class="card-img" src=<%= "https://image.tmdb.org/t/p/original#{bookmark.movie.poster_url}" %> alt=<% "#{bookmark.movie.title} movie poster" %>>
+                </div>
+                <div class="col-7">
+                  <div class="movie-and-bkmrk-box d-flex flex-column justify-content-around">
+                    <div class="movie-title-overview mb-auto">
+                      <h5><%= bookmark.movie.title %></h5>
+                      <p><%= bookmark.movie.overview %></p>
+                    </div>
+                    <div class="bkmrk d-flex justify-content-start">
+                      <i class="fa-solid fa-bookmark mt-1" style="font-size: 15px"></i>
+                      <div class="bkmrk-comment mx-2"><%= bookmark.comment %></div>
+                      <%= link_to edit_list_bookmark_path(@list, bookmark), class: "mx-2" do %>
+                        <i class="fa-regular fa-pen-to-square"></i>
+                      <% end %>
+                      <%= link_to bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+                        <i class="fa-regular fa-trash-can"></i>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
   <br>
   <hr>
 
@@ -77,7 +81,7 @@
             <%= simple_form_for [@list, @review] do |f| %>
               <%= f.input :content %>
               <%= f.input :rating %>
-              <%= f.submit "Submit", class: "btn btn-primary" %>
+              <%= f.submit "Submit", class: "btn btn-secondary" %>
             <% end %>
           </div>
         </div>
