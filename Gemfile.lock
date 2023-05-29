@@ -277,6 +277,7 @@ DEPENDENCIES
   jbuilder
   open-uri
   pg (~> 1.1)
+  popper_js (~> 2.11.7)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
   rails-controller-testing

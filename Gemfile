@@ -35,6 +35,7 @@ gem "faker"
 gem "dotenv-rails"
 gem "open-uri"
 gem "cloudinary"
+gem 'popper_js', '~> 2.11.7'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
