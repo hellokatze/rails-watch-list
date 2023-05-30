@@ -1,5 +1,7 @@
 <nav class="navbar navbar-light bg-dark p-3 sticky-top">
-  <h3>🍿 Movies R cool</h3>
+  <div id="page-logo" data-controller="typed" data-typed-words-value="<%= ["🍿 Movies R cool"] %>">
+    <h3>🍿 Movies R cool</h3>
+  </div>
   <div class="text">
     <%= link_to "My lists", root_path, class: "navbar-my-lists mx-3" %>
     <%= link_to "⭐️ Create new list ⭐️", new_list_path, class: "btn btn-primary", data: { toggle: "modal", target: "#newListModal"} %>
