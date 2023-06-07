@@ -8,13 +8,13 @@
 </div>
 
 <div class="show-container m-3">
-  <div class="header text-center">
+  <div class="header text-center mt-5">
     <h2>Bookmarked movies</h2>
     <%= link_to "Add a movie", new_list_bookmark_path(@list), class: "btn btn-primary" %>
     <%= link_to "Back to all lists", root_path, class: "btn btn-secondary" %>
   </div>
   <% if @list.bookmarks.length == 0 %>
-    <p class="text-center" style="color: gray"><em>No movies on this list yet. Bookmark your first movie!</em></p>
+    <p class="text-center mt-5" style="color: gray"><em>No movies on this list yet. Bookmark your first movie!</em></p>
   <% else %>
     <div class="container d-flex justify-content-center flex-column mt-2">
       <div class="cards">
@@ -55,12 +55,12 @@
 
   <div class="container">
     <div class="row">
-      <h2 class="text-center">What people think about this list</h2>
-      <div class="review-section d-flex justify-content-around">
+      <h2 class="text-center mt-5 mb-5">What people think about this list</h2>
+      <div class="review-section d-flex justify-content-around w-100">
         <div class="col-7">
           <div class="reviews">
             <% if @list.reviews.length == 0 %>
-              <p style="color: gray"><em>No reviews yet! Why don't you right the first one?</em></p>
+              <p style="color: gray"><em>No reviews yet! Why don't you write the first one?</em></p>
             <% else %>
               <% @list.reviews.each do |review| %>
                 <div class="star d-flex">
